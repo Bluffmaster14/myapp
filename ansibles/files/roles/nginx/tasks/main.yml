@@ -1,7 +1,6 @@
 ---
 
-tasks: 
-  - name: Deploying the image
-    command: kubectl apply -f files/deploy.yml
-  - name: Deploying the service
-    command: kubectl apply -f files/svc.yml
+- name: Deploying the image
+  command: kubectl apply -f files/deploy.yml
+- name: Deploying the service
+  command: kubectl apply -f files/svc.yml
