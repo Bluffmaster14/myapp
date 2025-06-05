@@ -1,0 +1,11 @@
+- hosts: k8s
+  become: no
+
+  tasks:
+  - name: checking current path
+    command: pwd 
+    register: path
+
+  - name: Debugging the path
+    debug:
+      msg: "Path is: {{ path.stdout }}"
