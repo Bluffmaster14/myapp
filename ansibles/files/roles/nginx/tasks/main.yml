@@ -1,13 +1,13 @@
 ---
 
-- name: creation of namespace
-  command: kubectl create ns ak
-
 - name: Synchronize .kube config from server A to B
   synchronize:
     src:  ~/.kube
     dest:  ~/.kube
   delegate_to: localhost
+
+- name: creation of namespace
+  command: kubectl create ns ak
 
 - name: Copy deploy.yml from build_node to deploy_node
   synchronize:
