@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp
-  namespace: {{ namespace }}
+  namespace: ak
 spec:
   replicas: 1 
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: {{ image }}
+        image: docker.io/bluffmaster32/development-development:tomcat10-untested-1
         ports:
         - containerPort: 80
 

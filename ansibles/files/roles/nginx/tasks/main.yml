@@ -8,6 +8,7 @@
 
 - name: creation of namespace
   command: kubectl create ns {{ namespace }}
+  ignore_errors: true
 
 - name: Copy deploy.yml from build_node to deploy_node
   synchronize:
