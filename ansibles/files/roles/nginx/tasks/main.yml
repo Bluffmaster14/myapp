@@ -1,6 +1,22 @@
 ---
 
+- name: Synchronize .kube config from server A to B
+  synchronize:
+    src:  ~/.kube
+    dest:  ~/.kube
+  delegate_to: localhost
+
+- name: Copy deploy.yml from build_node to deploy_node
+  synchronize:
+    src: "{{ item }}.yml"
+    dest: "/tmp/files/{{ item }}.yml"
+  delegate_to: localhost
+  loop:
+    - deploy
+    - svc
+
 - name: Deploying the image
-  command: kubectl apply -f ../files/deploy.yml
+  command: kubectl apply -f /tmp/files/deploy.yml
+
 - name: Deploying the service
-  command: kubectl apply -f ../files/svc.yml
+  command: kubectl apply -f /tmp/files/svc.yml
