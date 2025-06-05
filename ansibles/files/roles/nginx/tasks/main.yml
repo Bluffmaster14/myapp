@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: creation of namespace
-  command: kubectl create ns ak
+  command: kubectl create ns {{ namespace }}
 
 - name: Copy deploy.yml from build_node to deploy_node
   synchronize:
