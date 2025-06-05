@@ -1,5 +1,8 @@
 ---
 
+- name: creation of namespace
+  command: kubectl create ns ak
+
 - name: Synchronize .kube config from server A to B
   synchronize:
     src:  ~/.kube
