@@ -18,9 +18,17 @@
   loop:
     - deploy
     - svc
+    - secret
+    - configmap
 
 - name: Deploying the image
   command: kubectl apply -f /tmp/files/deploy.yml
 
 - name: Deploying the service
   command: kubectl apply -f /tmp/files/svc.yml
+
+- name: Deploying configmap
+  command: kubectl apply -f /tmp/files/configmap.yml
+
+- name: Deploying secret
+  command: kubectl apply -f /tmp/files/secret.yml
