@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 		String db_user = System.getenv("database_user");
 		String db_pass = System.getenv("database_password");
 		try {
-			conn = DriverManager.getConnection(Url, username, passwd);
+			conn = DriverManager.getConnection(Url, db_user, db_pass);
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, username);
 			ResultSet rset = pstm.executeQuery();
@@ -74,5 +74,6 @@ public class LoginServlet extends HttpServlet {
 
 			return false;
 		}
+		return false;
 	}
 }
