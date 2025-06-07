@@ -7,4 +7,4 @@ metadata:
     app: nginx
 data:
   database_user: akash
-  database_url: jdbc:postgresql://192.168.56.13:5432/postgres 
+  database_url: jdbc:postgresql://db-svc:5432/postgres 

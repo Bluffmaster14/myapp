@@ -53,6 +53,9 @@ public class LoginServlet extends HttpServlet {
 
 	private boolean validUser(String username, String passwd) {
 		String sql = "select password from data where username = ?";
+		String Url = System.getenv("database_url");
+		String db_user = System.getenv("database_user");
+		String db_pass = System.getenv("database_password");
 		try {
 			conn = DriverManager.getConnection(Url, username, passwd);
 			PreparedStatement pstm = conn.prepareStatement(sql);
