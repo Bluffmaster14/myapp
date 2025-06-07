@@ -4,6 +4,7 @@
 
   roles:
     - nginx
+    - db
   tasks:
   - name: checking current path
     command: pwd 
