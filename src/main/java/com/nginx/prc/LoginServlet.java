@@ -41,7 +41,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String username = request.getParameter("username");
 		String passwd = request.getParameter("password");
-		String Url=null;
 		String sql= "select password from data where username = ?"; 
 		if(validUser(username,passwd)) {
 			response.sendRedirect("welcome.jsp");
@@ -62,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 			pstm.setString(1, username);
 			ResultSet rset = pstm.executeQuery();
 			while (rset.next()) {
-				String password = rset.getNString("password");
+				String password = rset.getString("password");
 			}
 
 			if (password.equals(passwd)) {
