@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/hello")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String username = "akash";
-	private static final String password = "8421";
+	//private static final String username = "akash";
+	//private static final String password = "8421";
 	Connection conn = null;
 
 	@Override
@@ -42,29 +42,45 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String passwd = request.getParameter("password");
 		String sql= "select password from data where username = ?"; 
-		if(validUser(username,passwd)) {
-			response.sendRedirect("welcome.jsp");
+		try {
+			if(validUser(username,passwd)) {
+				response.sendRedirect("welcome.jsp");
 
-		}else {
-			response.sendRedirect("index.jsp?error=true");
+			}else {
+				response.sendRedirect("index.jsp?error=true");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	private boolean validUser(String username, String passwd) {
+	private boolean validUser(String username, String passwd) throws ClassNotFoundException {
+		String password = null;
 		String sql = "select password from data where username = ?";
 		String Url = System.getenv("database_url");
 		String db_user = System.getenv("database_user");
 		String db_pass = System.getenv("database_password");
+		//String Url = "jdbc:postgresql://192.168.56.13:5432/postgres";
+		//String db_user = "akash";
+		//String db_pass = "8421";
 		try {
+			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(Url, db_user, db_pass);
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, username);
 			ResultSet rset = pstm.executeQuery();
 			while (rset.next()) {
-				String password = rset.getString("password");
+				password = rset.getString("password");
+				System.out.println("Password is:: " +password);
+				System.out.println("Provided pssa: " +passwd);
 			}
 
 			if (password.equals(passwd)) {
+				System.out.println("inside if condition");
 				return true;
 			}
 		} catch (SQLException e) {
