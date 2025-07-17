@@ -1,0 +1,38 @@
+---
+
+
+
+- name: creation of namespace
+  k8s:
+    kubeconfig: ~/.kube/config
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: dev
+  ignore_errors: true
+
+- name: Apply ConfigMap
+  k8s:
+    kubeconfig: ~/.kube/config
+    state: present
+    src: files/configmap.yml
+
+- name: Apply Secret
+  k8s:
+    kubeconfig: ~/.kube/config
+    state: present
+    src: files/secret.yml
+
+- name: Deploy application (Deployment)
+  k8s:
+    kubeconfig: ~/.kube/config
+    state: present
+    src: files/deploy.yml
+
+- name: Expose application (Service)
+  k8s:
+    kubeconfig: ~/.kube/config
+    state: present
+    src: files/svc.yml

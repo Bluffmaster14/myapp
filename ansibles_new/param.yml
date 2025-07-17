@@ -1,0 +1,4 @@
+---
+
+namespace: "akash"
+image: "docker.io/bluffmaster32/development-development:tomcat10-untested-1"

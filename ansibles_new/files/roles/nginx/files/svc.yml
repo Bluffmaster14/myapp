@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  nginx-svc
+  namespace: ak
+spec:
+  selector:
+    app:  my-app
+  type:  NodePort
+  ports:
+  - name:  name-of-the-port
+    port:  80
+    targetPort:  8080

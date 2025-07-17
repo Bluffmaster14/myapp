@@ -1,0 +1,15 @@
+- hosts: k8s_cluster
+  become: no
+  gather_facts: no
+
+  roles:
+    - nginx
+   # - db
+  tasks:
+  - name: checking current path
+    command: pwd 
+    register: path
+
+  - name: Debugging the path
+    debug:
+      msg: "Path is: {{ path.stdout }}"
